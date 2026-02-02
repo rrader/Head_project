@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Дякуємо! - Idea Factory{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto text-center">
+    <div class="clay-card p-5 sm:p-12">
+        <!-- Success Icon -->
+        <div class="w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-4 sm:mb-6 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center animate-bounce" style="animation-iteration-count: 3;">
+            <svg class="w-10 h-10 sm:w-14 sm:h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+            </svg>
+        </div>
+
+        <h1 class="font-heading text-3xl sm:text-5xl font-bold text-text mb-3 sm:mb-4">
+            Дякуємо!
+        </h1>
+        <p class="text-base sm:text-xl text-text/80 mb-4 sm:mb-6">
+            Вашу ідею успішно збережено!
+        </p>
+
+        <!-- Bender Quote -->
+        {% if quote %}
+        <div class="bg-amber-50 border-l-4 border-amber-400 rounded-clay p-4 sm:p-6 mb-8 text-left" role="region" aria-label="Мотиваційна цитата">
+            <div class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+                </svg>
+                <div>
+                    <p class="font-semibold text-amber-900 mb-1">Bender каже:</p>
+                    <p class="text-amber-800 italic">{{ quote }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Saved Idea Summary -->
+        <article class="clay-card bg-gradient-to-br from-indigo-50 to-purple-50 p-4 sm:p-8 mb-4 sm:mb-8 text-left">
+            <div class="flex items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <div class="flex-1">
+                    <h2 class="font-heading text-lg sm:text-2xl font-bold text-text mb-2 sm:mb-3">{{ title }}</h2>
+                </div>
+            </div>
+
+            <div class="border-t-2 border-indigo-200 pt-3 sm:pt-4">
+                <dl class="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+                    <div class="flex items-start gap-2">
+                        <dt class="font-semibold text-text/70 min-w-[100px] sm:min-w-[120px]">Час:</dt>
+                        <dd class="text-text">{{ timestamp }}</dd>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <dt class="font-semibold text-text/70 min-w-[100px] sm:min-w-[120px]">ID сесії:</dt>
+                        <dd class="text-text font-mono text-xs">{{ session_id[:16] }}...</dd>
+                    </div>
+                </dl>
+            </div>
+        </article>
+
+        <!-- CTA Button -->
+        <a
+            href="{{ url_for('landing') }}"
+            class="clay-btn bg-primary text-white border-primary px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg hover:bg-primary/90 focus:ring-4 focus:ring-primary/50 cursor-pointer inline-flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center">
+            <span>Згенерувати ще одну</span>
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- Success Animation -->
+    <div class="mt-8 flex justify-center gap-2" aria-hidden="true">
+        <div class="w-3 h-3 bg-primary rounded-full animate-bounce" style="animation-delay: 0s;"></div>
+        <div class="w-3 h-3 bg-secondary rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
+        <div class="w-3 h-3 bg-accent rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+    </div>
+</div>
+
+{% block extra_css %}
+<style>
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    .animate-bounce {
+        animation: bounce 0.6s ease-in-out;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .animate-bounce {
+            animation: none;
+        }
+    }
+</style>
+{% endblock %}
+{% endblock %}

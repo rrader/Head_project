@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  idea_factory:
+    build: .
+    container_name: idea_factory
+    ports:
+      - "5001:5001"
+    environment:
+      # OpenAI Configuration
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-5-mini}
+      
+      # Google Sheets Configuration
+      - GOOGLE_SHEETS_SPREADSHEET_ID=${GOOGLE_SHEETS_SPREADSHEET_ID}
+      - GOOGLE_SHEETS_SHEET_NAME=${GOOGLE_SHEETS_SHEET_NAME:-Ideas}
+      - GOOGLE_SHEETS_CREDS=${GOOGLE_SHEETS_CREDS}
+      
+      # Flask Configuration
+      - APP_SECRET_KEY=${APP_SECRET_KEY}
+      
+      # Bender Audio Configuration (optional)
+      - BENDER_URL=${BENDER_URL:-http://bender.rmn.pp.ua}
+      
+      # Optional Configuration
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    volumes:
+      # Mount .env file for local development (optional)
+      - ./.env:/app/.env:ro
+      # Persist session data
+      - idea_factory_data:/app/instance
+    restart: unless-stopped
+    networks:
+      - idea_factory_network
+
+volumes:
+  idea_factory_data:
+
+networks:
+  idea_factory_network:
+    driver: bridge

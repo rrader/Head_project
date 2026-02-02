@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Idea Factory{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Crimson+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#818CF8',
+                        accent: '#F97316',
+                        background: '#EEF2FF',
+                        text: '#1E1B4B',
+                    },
+                    fontFamily: {
+                        heading: ['Crimson Pro', 'serif'],
+                        body: ['Atkinson Hyperlegible', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'clay': '20px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Atkinson Hyperlegible', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Crimson Pro', serif;
+        }
+
+        /* Claymorphism styles */
+        .clay-card {
+            background: white;
+            border-radius: 20px;
+            border: 3px solid #E0E7FF;
+            box-shadow:
+                0 4px 6px -1px rgba(79, 70, 229, 0.1),
+                0 2px 4px -2px rgba(79, 70, 229, 0.1),
+                inset 0 2px 4px 0 rgba(255, 255, 255, 0.6);
+            transition: all 200ms ease-out;
+        }
+
+        .clay-card:hover {
+            box-shadow:
+                0 10px 15px -3px rgba(79, 70, 229, 0.15),
+                0 4px 6px -4px rgba(79, 70, 229, 0.15),
+                inset 0 2px 4px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-btn {
+            border-radius: 16px;
+            border: 3px solid currentColor;
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                inset 0 2px 4px 0 rgba(255, 255, 255, 0.4);
+            transition: all 200ms ease-out;
+            font-weight: 600;
+            min-height: 44px; /* Mobile touch target minimum */
+        }
+
+        .clay-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow:
+                0 6px 8px -1px rgba(0, 0, 0, 0.15),
+                inset 0 2px 4px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .clay-btn:active:not(:disabled) {
+            transform: translateY(1px);
+            box-shadow:
+                0 2px 4px -1px rgba(0, 0, 0, 0.1),
+                inset 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .clay-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .clay-input {
+            border-radius: 16px;
+            border: 3px solid #E0E7FF;
+            box-shadow: inset 0 2px 4px 0 rgba(79, 70, 229, 0.05);
+            transition: all 200ms ease-out;
+            min-height: 44px; /* Mobile touch target minimum */
+            font-size: 16px; /* Prevents iOS zoom on focus */
+        }
+
+        .clay-input:focus {
+            outline: none;
+            border-color: #4F46E5;
+            box-shadow:
+                0 0 0 3px rgba(79, 70, 229, 0.1),
+                inset 0 2px 4px 0 rgba(79, 70, 229, 0.05);
+        }
+
+        .clay-badge {
+            border-radius: 12px;
+            border: 2px solid currentColor;
+            box-shadow:
+                0 2px 4px -1px rgba(0, 0, 0, 0.1),
+                inset 0 1px 2px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        /* Loading state */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus visible for keyboard navigation */
+        *:focus-visible {
+            outline: 3px solid #4F46E5;
+            outline-offset: 2px;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="bg-background min-h-screen font-body text-text">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-8 lg:py-12">
+        {% block content %}{% endblock %}
+    </div>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Idea Factory - Генератор ідей для STEAM-хакатонів{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <!-- Hero Section -->
+    <div class="text-center mb-4 sm:mb-8">
+        <div class="clay-card p-5 sm:p-8 lg:p-12">
+            <!-- Icon -->
+            <div class="w-14 h-14 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 bg-gradient-to-br from-primary to-secondary rounded-clay flex items-center justify-center">
+                <svg class="w-8 h-8 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+            </div>
+
+            <h1 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold text-text mb-3 sm:mb-6">
+                Idea Factory
+            </h1>
+            <p class="text-base sm:text-2xl text-text/80 mb-4 sm:mb-8 max-w-2xl mx-auto">
+                Згенеруй ідею для STEAM-хакатону за 2 хвилини
+            </p>
+
+            <!-- Bender Quote -->
+            {% if quote %}
+            <div class="bg-amber-50 border-l-4 border-amber-400 rounded-clay p-3 sm:p-6 mb-4 sm:mb-8 text-left" role="region" aria-label="Мотиваційна цитата">
+                <div class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+                    </svg>
+                    <div>
+                        <p class="font-semibold text-amber-900 text-xs sm:text-sm mb-1">Bender каже:</p>
+                        <p class="text-amber-800 italic text-sm sm:text-base">{{ quote }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- CTA Button -->
+            <form action="{{ url_for('brainstorm') }}" method="GET">
+                <button type="submit" class="clay-btn bg-primary text-white border-primary px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-xl hover:bg-primary/90 focus:ring-4 focus:ring-primary/50 cursor-pointer inline-flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center">
+                    <span>Почати</span>
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="grid grid-cols-3 gap-2 sm:gap-6 mb-4 sm:mb-8">
+        <div class="clay-card p-3 sm:p-6 text-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-4 bg-secondary/20 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+            </div>
+            <h3 class="font-heading text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Швидко</h3>
+            <p class="text-text/70 text-xs sm:text-sm hidden sm:block">Генерація за 2 хвилини</p>
+        </div>
+
+        <div class="clay-card p-3 sm:p-6 text-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-4 bg-accent/20 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+            </div>
+            <h3 class="font-heading text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Креативно</h3>
+            <p class="text-text/70 text-xs sm:text-sm hidden sm:block">AI-генерація ідей</p>
+        </div>
+
+        <div class="clay-card p-3 sm:p-6 text-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-4 bg-green-500/20 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <h3 class="font-heading text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Просто</h3>
+            <p class="text-text/70 text-xs sm:text-sm hidden sm:block">3 кроки</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center">
+        <p class="text-text/50 text-sm">
+            Powered by OpenAI & Google Sheets
+        </p>
+    </div>
+</div>
+{% endblock %}

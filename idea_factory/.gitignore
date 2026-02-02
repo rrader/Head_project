@@ -1,0 +1,27 @@
+# Environment
+.env
+.env.production
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.Python
+*.so
+
+# IDE
+.vscode/
+
+# Docker
+*.tar.gz
+
+# Build artifacts
+*.egg
+*.egg-info/
+dist/
+build/
+.venv/
+env/
+.DS_Store

@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block title %}Discussion - Етап 2/3{% endblock %}
+
+{% block content %}
+<!-- Stage Progress -->
+<nav aria-label="Прогрес етапів" class="mb-4 sm:mb-8">
+    <div class="clay-card p-3 sm:p-6">
+        <ol class="flex items-center justify-between relative">
+            <!-- Progress Line -->
+            <div class="absolute top-6 left-[10%] right-[10%] h-1 bg-gradient-to-r from-green-500 via-primary to-gray-300 -z-10" aria-hidden="true"></div>
+
+            <!-- Stage 1: Completed -->
+            <li class="flex-1 text-center relative z-10">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-green-500 text-white border-4 border-white flex items-center justify-center shadow-lg mb-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <span class="text-sm font-semibold text-green-600">Brainstorm</span>
+                </div>
+            </li>
+
+            <!-- Stage 2: Active -->
+            <li class="flex-1 text-center relative z-10">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-primary text-white border-4 border-white flex items-center justify-center font-heading font-bold text-lg shadow-lg mb-2">
+                        2
+                    </div>
+                    <span class="text-sm font-semibold text-primary">Discussion</span>
+                </div>
+            </li>
+
+            <!-- Stage 3: Upcoming -->
+            <li class="flex-1 text-center relative z-10">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-gray-200 text-gray-500 border-4 border-white flex items-center justify-center font-heading font-bold text-lg shadow-lg mb-2">
+                        3
+                    </div>
+                    <span class="text-sm text-gray-500">Selection</span>
+                </div>
+            </li>
+        </ol>
+    </div>
+</nav>
+
+<div class="clay-card p-4 sm:p-8">
+    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+        </svg>
+        <h2 class="font-heading text-lg sm:text-3xl font-bold text-text">Етап 2: Discussion</h2>
+    </div>
+
+    <!-- Bender Quote -->
+    {% if quote %}
+    <div class="bg-amber-50 border-l-4 border-amber-400 rounded-clay p-4 sm:p-5 mb-6" role="region" aria-label="Мотиваційна цитата">
+        <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+            </svg>
+            <div>
+                <p class="font-semibold text-amber-900 text-sm">Bender каже:</p>
+                <p class="text-amber-800 italic text-sm">{{ quote }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="mb-6 p-4 rounded-clay border-3 {% if category == 'error' %}bg-red-50 border-red-400 text-red-800{% else %}bg-blue-50 border-blue-400 text-blue-800{% endif %}" role="alert">
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                <p>{{ message }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Current Idea Card -->
+    <article class="clay-card bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-6 mb-4 sm:mb-6">
+        <div class="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <div class="flex-1">
+                <h3 class="font-heading text-lg sm:text-2xl font-bold text-text mb-1 sm:mb-2">{{ idea.title }}</h3>
+                <p class="text-text/80 leading-relaxed text-sm sm:text-base">{{ idea.description }}</p>
+
+                {% if improved and changes %}
+                <div class="bg-green-50 border-l-4 border-green-400 rounded-clay p-3 mt-4" role="status">
+                    <div class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <div>
+                            <p class="font-semibold text-green-900 text-sm">Покращено!</p>
+                            <p class="text-green-800 text-sm">{{ changes }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </article>
+
+    <!-- Improvement Form -->
+    <form method="POST" action="{{ url_for('improve') }}" id="improveForm">
+        <input type="hidden" name="action" value="improve">
+        <input type="hidden" name="idea_index" value="0">
+
+        <div class="mb-4 sm:mb-6">
+            <label for="instruction" class="block font-heading font-semibold text-base sm:text-lg text-text mb-2 sm:mb-3">
+                Що змінити?
+            </label>
+            <input
+                type="text"
+                class="clay-input w-full px-3 py-2 sm:px-4 sm:py-3 text-text focus:outline-none text-sm sm:text-base"
+                id="instruction"
+                name="instruction"
+                placeholder="Наприклад: додати більше деталей"
+                aria-describedby="instructionHelp">
+            <p id="instructionHelp" class="text-xs sm:text-sm text-text/60 mt-1 sm:mt-2">Або оберіть швидку дію нижче</p>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="mb-4 sm:mb-6">
+            <p class="block font-heading font-semibold text-base sm:text-lg text-text mb-2 sm:mb-3">Швидкі дії:</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                <button
+                    type="button"
+                    onclick="document.getElementById('instruction').value='Зроби це реалістичніше для виконання в школі за 1-2 дні'; document.getElementById('improveForm').requestSubmit();"
+                    class="clay-btn bg-white text-text border-gray-300 px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm hover:bg-gray-50 focus:ring-2 focus:ring-gray-300 cursor-pointer inline-flex items-center gap-1.5 sm:gap-2">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Реалістичніше</span>
+                </button>
+
+                <button
+                    type="button"
+                    onclick="document.getElementById('instruction').value='Додай використання дрона в цю ідею'; document.getElementById('improveForm').requestSubmit();"
+                    class="clay-btn bg-white text-text border-gray-300 px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm hover:bg-gray-50 focus:ring-2 focus:ring-gray-300 cursor-pointer inline-flex items-center gap-1.5 sm:gap-2">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
+                    </svg>
+                    <span>Дрон</span>
+                </button>
+
+                <button
+                    type="button"
+                    onclick="document.getElementById('instruction').value='Додай елементи штучного інтелекту або машинного навчання'; document.getElementById('improveForm').requestSubmit();"
+                    class="clay-btn bg-white text-text border-gray-300 px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm hover:bg-gray-50 focus:ring-2 focus:ring-gray-300 cursor-pointer inline-flex items-center gap-1.5 sm:gap-2">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-purple-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>AI</span>
+                </button>
+
+                <button
+                    type="button"
+                    onclick="document.getElementById('instruction').value='Адаптуй це для використання в школі'; document.getElementById('improveForm').requestSubmit();"
+                    class="clay-btn bg-white text-text border-gray-300 px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm hover:bg-gray-50 focus:ring-2 focus:ring-gray-300 cursor-pointer inline-flex items-center gap-1.5 sm:gap-2">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <span>Для школи</span>
+                </button>
+            </div>
+        </div>
+
+        <button
+            type="submit"
+            class="clay-btn bg-primary text-white border-primary px-5 py-2.5 sm:px-6 sm:py-3 text-base sm:text-lg w-full hover:bg-primary/90 focus:ring-4 focus:ring-primary/50 cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3"
+            id="improveBtn">
+            <span>Перегенерувати</span>
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+        </button>
+    </form>
+
+    <form method="GET" action="{{ url_for('submit') }}">
+        <button
+            type="submit"
+            class="clay-btn bg-green-500 text-white border-green-500 px-5 py-2.5 sm:px-6 sm:py-3 text-base sm:text-lg w-full hover:bg-green-600 focus:ring-4 focus:ring-green-500/50 cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3">
+            <span>До вибору (Етап 3)</span>
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+        </button>
+    </form>
+
+    <div class="mt-4 sm:mt-6 text-center">
+        <a
+            href="{{ url_for('brainstorm') }}"
+            class="clay-btn bg-white text-text border-gray-300 px-4 py-2 text-sm hover:bg-gray-50 focus:ring-2 focus:ring-gray-300 cursor-pointer inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span>Повернутись до brainstorm</span>
+        </a>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    // Loading state for form submission
+    document.getElementById('improveForm')?.addEventListener('submit', function(e) {
+        const btn = document.getElementById('improveBtn');
+        btn.disabled = true;
+        btn.innerHTML = `
+            <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Покращення...</span>
+        `;
+    });
+</script>
+{% endblock %}
+{% endblock %}
