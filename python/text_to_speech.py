@@ -47,7 +47,7 @@ class AudioResponse:
     def get_audio(self):
         # play audio file
         with client.with_streaming_response.audio.speech.create(
-                model="tts-1-hd",
+                model="gpt-4o-mini-tts",
                 voice="onyx",
                 input=f"{self.text}",
                 response_format="mp3"
