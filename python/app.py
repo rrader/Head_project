@@ -116,11 +116,7 @@ def play_audio():
     
     if not text:
         return jsonify({"error": "No text provided"}), 400
-    
-    # Check if audio is enabled
-    if not get_audio_status():
-        return jsonify({"status": "skipped", "message": "Audio is disabled"}), 200
-    
+
     try:
         # Import and use the text_to_speech module
         from text_to_speech import AudioResponse
