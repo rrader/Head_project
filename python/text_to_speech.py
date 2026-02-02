@@ -55,7 +55,7 @@ class AudioResponse:
             audio_path = f"{save_directory}/output1.mp3"
             response.stream_to_file(audio_path)
 
-        os.system(f"ffplay -autoexit -hide_banner -loglevel fatal -af \"atempo=1.2\" {audio_path}")
+        os.system(f"ffplay -autoexit -hide_banner -loglevel fatal -af \"atempo=1.4\" {audio_path}")
 
         return
         # play audio file: read with wave, play with sounddevice
