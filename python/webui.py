@@ -95,34 +95,6 @@ def audio_status():
     status = "running" if get_audio_status() else "stopped"
     return jsonify({"status": status})
 
-@app.route('/audio/play', methods=['POST'])
-def play_audio():
-    """Generate and play TTS audio from text using OpenAI."""
-    from flask import request
-    import json
-    
-    data = request.get_json()
-    text = data.get('text', '')
-    
-    if not text:
-        return jsonify({"error": "No text provided"}), 400
-    
-    # Check if audio is enabled
-    if not get_audio_status():
-        return jsonify({"status": "skipped", "message": "Audio is disabled"}), 200
-    
-    try:
-        # Import and use the text_to_speech module
-        from text_to_speech import AudioResponse
-        
-        audio_response = AudioResponse(text)
-        # This will generate and play the audio
-        audio_response.get_audio()
-        
-        return jsonify({"status": "success", "message": "Audio played"}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
 
 def web_server():
     app.run(host='0.0.0.0', port=5000)
