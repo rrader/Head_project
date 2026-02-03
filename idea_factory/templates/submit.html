@@ -4,8 +4,8 @@
 
 {% block content %}
 <!-- Stage Progress -->
-<nav aria-label="Прогрес етапів" class="mb-4 sm:mb-8">
-    <div class="clay-card p-3 sm:p-6">
+<nav aria-label="Прогрес етапів" class="mb-2 sm:mb-3 md:mb-4">
+    <div class="clay-card p-2 sm:p-3 md:p-4">
         <ol class="flex items-center justify-between relative">
             <!-- Progress Line -->
             <div class="absolute top-6 left-[10%] right-[10%] h-1 bg-gradient-to-r from-green-500 via-green-500 to-primary -z-10" aria-hidden="true"></div>
@@ -47,24 +47,24 @@
     </div>
 </nav>
 
-<div class="clay-card p-4 sm:p-8">
-    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<div class="clay-card p-3 sm:p-4 md:p-6">
+    <div class="flex items-center gap-2 mb-2 sm:mb-3 md:mb-4">
+        <svg class="w-5 h-5 sm:w-6 md:w-7 sm:h-6 md:h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <h2 class="font-heading text-lg sm:text-3xl font-bold text-text">Етап 3: Selection</h2>
+        <h2 class="font-heading text-base sm:text-lg md:text-xl font-bold text-text">Етап 3: Selection</h2>
     </div>
 
     <!-- Bender Quote -->
     {% if quote %}
-    <div class="bg-amber-50 border-l-4 border-amber-400 rounded-clay p-4 sm:p-5 mb-6" role="region" aria-label="Мотиваційна цитата">
-        <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <div class="bg-amber-50 border-l-4 border-amber-400 rounded-clay p-2 sm:p-3 mb-2 sm:mb-3" role="region" aria-label="Мотиваційна цитата">
+        <div class="flex items-start gap-1.5 sm:gap-2">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
             </svg>
             <div>
-                <p class="font-semibold text-amber-900 text-sm">Bender каже:</p>
-                <p class="text-amber-800 italic text-sm">{{ quote }}</p>
+                <p class="font-semibold text-amber-900 text-[10px] sm:text-xs">Bender каже:</p>
+                <p class="text-amber-800 italic text-[11px] sm:text-xs">{{ quote }}</p>
             </div>
         </div>
     </div>
@@ -74,12 +74,12 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
-        <div class="mb-6 p-4 rounded-clay border-3 {% if category == 'error' %}bg-red-50 border-red-400 text-red-800{% else %}bg-blue-50 border-blue-400 text-blue-800{% endif %}" role="alert">
-            <div class="flex items-start gap-3">
-                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <div class="mb-3 p-3 rounded-clay border-3 {% if category == 'error' %}bg-red-50 border-red-400 text-red-800{% else %}bg-blue-50 border-blue-400 text-blue-800{% endif %}" role="alert">
+            <div class="flex items-start gap-2">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
                 </svg>
-                <p>{{ message }}</p>
+                <p class="text-xs sm:text-sm">{{ message }}</p>
             </div>
         </div>
         {% endfor %}
@@ -87,14 +87,14 @@
     {% endwith %}
 
     <!-- Info Alert -->
-    <div class="bg-blue-50 border-l-4 border-blue-400 rounded-clay p-4 mb-6" role="status">
-        <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <div class="bg-blue-50 border-l-4 border-blue-400 rounded-clay p-2 sm:p-3 mb-2 sm:mb-3" role="status">
+        <div class="flex items-start gap-2">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
             </svg>
             <div>
-                <p class="font-semibold text-blue-900">Майже готово!</p>
-                <p class="text-blue-800 text-sm">Перевірте та відредагуйте вашу ідею перед збереженням.</p>
+                <p class="font-semibold text-blue-900 text-xs sm:text-sm">Майже готово!</p>
+                <p class="text-blue-800 text-[11px] sm:text-xs">Перевірте та відредагуйте вашу ідею перед збереженням.</p>
             </div>
         </div>
     </div>
