@@ -4,8 +4,8 @@
 
 {% block content %}
 <!-- Stage Progress -->
-<nav aria-label="Прогрес етапів" class="mb-4 sm:mb-8">
-    <div class="clay-card p-3 sm:p-6">
+<nav aria-label="Прогрес етапів" class="mb-4 sm:mb-6 md:mb-8">
+    <div class="clay-card p-3 sm:p-4 md:p-6">
         <ol class="flex items-center justify-between relative">
             <!-- Progress Line -->
             <div class="absolute top-6 left-[10%] right-[10%] h-1 bg-gradient-to-r from-green-500 via-primary to-gray-300 -z-10" aria-hidden="true"></div>
@@ -45,12 +45,12 @@
     </div>
 </nav>
 
-<div class="clay-card p-4 sm:p-8">
-    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<div class="clay-card p-4 sm:p-6 md:p-8">
+    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
+        <svg class="w-6 h-6 sm:w-7 md:w-8 sm:h-7 md:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
         </svg>
-        <h2 class="font-heading text-lg sm:text-3xl font-bold text-text">Етап 2: Discussion</h2>
+        <h2 class="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-text">Етап 2: Discussion</h2>
     </div>
 
     <!-- Bender Quote -->
@@ -85,13 +85,13 @@
     {% endwith %}
 
     <!-- Current Idea Card -->
-    <article class="clay-card bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-6 mb-4 sm:mb-6">
+    <article class="clay-card bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-5 md:p-6 mb-4 sm:mb-5 md:mb-6">
         <div class="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <svg class="w-5 h-5 sm:w-6 md:h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             <div class="flex-1">
-                <h3 class="font-heading text-lg sm:text-2xl font-bold text-text mb-1 sm:mb-2">{{ idea.title }}</h3>
+                <h3 class="font-heading text-lg sm:text-xl md:text-2xl font-bold text-text mb-1 sm:mb-2">{{ idea.title }}</h3>
                 <p class="text-text/80 leading-relaxed text-sm sm:text-base">{{ idea.description }}</p>
 
                 {% if improved and changes %}
@@ -116,13 +116,13 @@
         <input type="hidden" name="action" value="improve">
         <input type="hidden" name="idea_index" value="0">
 
-        <div class="mb-4 sm:mb-6">
+        <div class="mb-4 sm:mb-5 md:mb-6">
             <label for="instruction" class="block font-heading font-semibold text-base sm:text-lg text-text mb-2 sm:mb-3">
                 Що змінити?
             </label>
             <input
                 type="text"
-                class="clay-input w-full px-3 py-2 sm:px-4 sm:py-3 text-text focus:outline-none text-sm sm:text-base"
+                class="clay-input w-full px-3 py-2 sm:px-4 md:py-3 text-text focus:outline-none text-sm sm:text-base"
                 id="instruction"
                 name="instruction"
                 placeholder="Наприклад: додати більше деталей"
@@ -131,9 +131,9 @@
         </div>
 
         <!-- Quick Actions -->
-        <div class="mb-4 sm:mb-6">
+        <div class="mb-4 sm:mb-5 md:mb-6">
             <p class="block font-heading font-semibold text-base sm:text-lg text-text mb-2 sm:mb-3">Швидкі дії:</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-3">
                 <button
                     type="button"
                     onclick="document.getElementById('instruction').value='Зроби це реалістичніше для виконання в школі за 1-2 дні'; document.getElementById('improveForm').requestSubmit();"
@@ -178,7 +178,7 @@
 
         <button
             type="submit"
-            class="clay-btn bg-primary text-white border-primary px-5 py-2.5 sm:px-6 sm:py-3 text-base sm:text-lg w-full hover:bg-primary/90 focus:ring-4 focus:ring-primary/50 cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3"
+            class="clay-btn bg-primary text-white border-primary px-5 py-2.5 sm:px-6 md:py-3 text-base sm:text-lg w-full hover:bg-primary/90 focus:ring-4 focus:ring-primary/50 cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3"
             id="improveBtn">
             <span>Перегенерувати</span>
             <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -190,7 +190,7 @@
     <form method="GET" action="{{ url_for('submit') }}">
         <button
             type="submit"
-            class="clay-btn bg-green-500 text-white border-green-500 px-5 py-2.5 sm:px-6 sm:py-3 text-base sm:text-lg w-full hover:bg-green-600 focus:ring-4 focus:ring-green-500/50 cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3">
+            class="clay-btn bg-green-500 text-white border-green-500 px-5 py-2.5 sm:px-6 md:py-3 text-base sm:text-lg w-full hover:bg-green-600 focus:ring-4 focus:ring-green-500/50 cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3">
             <span>До вибору (Етап 3)</span>
             <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -198,7 +198,7 @@
         </button>
     </form>
 
-    <div class="mt-4 sm:mt-6 text-center">
+    <div class="mt-4 sm:mt-5 md:mt-6 text-center">
         <a
             href="{{ url_for('brainstorm') }}"
             class="clay-btn bg-white text-text border-gray-300 px-4 py-2 text-sm hover:bg-gray-50 focus:ring-2 focus:ring-gray-300 cursor-pointer inline-flex items-center gap-2">
